@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "./ui/button";
 import { Plus } from "lucide-react";
 
 interface MenuItemProps {
+  id: number;
   name: string;
   description: string;
   price: string;
@@ -9,9 +11,14 @@ interface MenuItemProps {
   onAdd?: () => void;
 }
 
-export const MenuItem = ({ name, description, price, image, onAdd }: MenuItemProps) => {
+export const MenuItem = ({ id, name, description, price, image, onAdd }: MenuItemProps) => {
+  const navigate = useNavigate();
+
   return (
-    <div className="bg-card rounded-xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 group">
+    <div 
+      className="bg-card rounded-xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 group cursor-pointer"
+      onClick={() => navigate(`/dish/${id}`)}
+    >
       <div className="relative h-48 overflow-hidden">
         <img
           src={image}
@@ -29,7 +36,10 @@ export const MenuItem = ({ name, description, price, image, onAdd }: MenuItemPro
           <span className="text-2xl font-bold text-primary">{price}</span>
           <Button
             size="icon"
-            onClick={onAdd}
+            onClick={(e) => {
+              e.stopPropagation();
+              onAdd?.();
+            }}
             className="rounded-full bg-gradient-hero hover:opacity-90 transition-opacity"
           >
             <Plus className="w-5 h-5" />

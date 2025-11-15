@@ -131,6 +131,7 @@ const Index = () => {
           {menuItems.map((item) => (
             <MenuItem
               key={item.id}
+              id={item.id}
               name={item.name}
               description={item.description}
               price={item.price}
