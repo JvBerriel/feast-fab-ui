@@ -47,6 +47,10 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        status: {
+          preparing: "hsl(var(--status-preparing))",
+          ready: "hsl(var(--status-ready))",
+        },
       },
       backgroundImage: {
         "gradient-hero": "var(--gradient-hero)",
